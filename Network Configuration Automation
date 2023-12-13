@@ -1,0 +1,53 @@
+# Network Configuration Automation
+
+This repository contains Ansible playbooks for automating the backup, version control, and configuration management of network devices.
+
+## Usage
+
+1. **Install Ansible:**
+   - Ensure that Ansible is installed on your control machine where you will run the playbook.
+   - Example: `pip install ansible`
+
+2. **Update Inventory File:**
+   - Create an Ansible inventory file (e.g., `inventory.ini`) listing the hostnames or IP addresses of your network devices.
+   - Example:
+     ```ini
+     [network_devices]
+     router1 ansible_host=192.168.1.1
+     switch1 ansible_host=192.168.1.2
+     ```
+
+3. **Customize Ansible Playbook:**
+   - Clone this repository to your local machine.
+   - Open the `configure_network.yml` playbook and update the following:
+     - Replace `network_devices` with the actual group name or individual hostnames of your network devices.
+     - Adjust the paths, filenames, and commands based on your network device specifics.
+
+4. **Run Ansible Playbook:**
+   - Execute the Ansible playbook to perform the configuration changes.
+     ```bash
+     ansible-playbook -i inventory.ini configure_network.yml
+     ```
+
+5. **Verify Changes:**
+   - Verify that the configurations on your network devices have been updated.
+
+6. **Rollback (if needed):**
+   - If issues arise, use the version control system to identify the previous commit and roll back configurations.
+   - Example Git commands:
+     ```bash
+     git log  # Find the commit hash you want to revert to
+     git revert <commit_hash>  # Create a new commit that undoes changes
+     ```
+
+## Repository Structure
+
+```plaintext
+my-network-automation/
+|-- configure_network.yml
+|-- inventory.ini
+|-- templates/
+|   `-- network_config.j2
+|-- backups/
+|-- configs/
+|-- README.md
